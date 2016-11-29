@@ -10,7 +10,6 @@
 #include "MotieSensor.h"
 using namespace std;
 
-int status = 0;
 
 int main() {
 	//Sensor y(0x00, true);
@@ -20,9 +19,10 @@ int main() {
 	MotieSensor a(0x01, y);
 	DrukSensor b(0x02);
 	a.setlicht();
+	bool status[8] = {0};
 	while (1) {				
-		a.check();
-		b.check();
+		status[0]=a.check();
+		status[1]=b.check();
 	}	
 	
 }

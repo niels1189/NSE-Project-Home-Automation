@@ -4,10 +4,8 @@
 class Sensor {
 public:
 	Sensor();
-	Sensor(int id,bool actief);
-	
-	bool check();
-	
+	Sensor(int id,bool actief);	
+	bool alive();	
 	void setactief();
 private:	
 	bool actief; //sensor is actief

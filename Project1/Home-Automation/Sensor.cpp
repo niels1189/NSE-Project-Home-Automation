@@ -11,7 +11,7 @@ Sensor::Sensor() {
 	heartbeat = 0;
 }
 
-bool Sensor::check() {
+bool Sensor::alive() {
 	heartbeat = std::clock() - start;
 	heartbeat /= 1000;
 	if (heartbeat > timeout) {

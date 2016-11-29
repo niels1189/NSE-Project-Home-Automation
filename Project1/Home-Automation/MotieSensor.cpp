@@ -1,17 +1,18 @@
 #include "MotieSensor.h"
 #include "Lamp.h"
 
-MotieSensor::MotieSensor(int id,Lamp&gebondenlicht):gebondenlicht(gebondenlicht) {
-	parent = Sensor(id, true);
+MotieSensor::MotieSensor(int id,Lamp&gebondenlicht):gebondenlicht(gebondenlicht), Sensor(id, true) {
+	
 }
 
-bool MotieSensor::check() {
-	if (!parent.check())
+bool MotieSensor::check() {	
+	if (alive()) {
 		return false;
+	}
 	return true;
 }
 
 void MotieSensor::setlicht() {
-	parent.setactief();
+	setactief();
 	gebondenlicht.Activeer();
 }

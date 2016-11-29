@@ -2,8 +2,8 @@
 #include "Sensor.h"
 #include <ctime>
 
-DrukSensor::DrukSensor(int id) {
-	parent=Sensor(id,true);
+DrukSensor::DrukSensor(int id):Sensor(id,true){
+	
 }
 
 void DrukSensor::Aanval() {
@@ -14,7 +14,7 @@ void DrukSensor::Aanval() {
 bool DrukSensor::check() {
 	//slaap functies
 	if (actief) {
-		parent.setactief();
+		setactief();
 	}
 
 	if ((start==0)&actief & !slaap) {
@@ -46,11 +46,11 @@ bool DrukSensor::check() {
 	}
 
 	//check
-	if (!parent.check())
+	if (alive())
 		return false;
 	return true;
 }
-
+//debug
 void DrukSensor::state() {
 	if (actief == true) {
 		actief = false;
