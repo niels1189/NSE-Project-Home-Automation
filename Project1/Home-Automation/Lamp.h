@@ -13,7 +13,7 @@ private:
 	int green;
 	int blue;
 	int start;
-	void Settijd();
+//	void Settijd();
 };
 #endif
 #pragma once
