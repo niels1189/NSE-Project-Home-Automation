@@ -7,7 +7,6 @@ using namespace std;
 class MotionSensor :public Sensor{
 public:
 	MotionSensor(int id,Lamp &gebondenlicht);
-	void setlicht();		
 	bool check();
 private:	
 	Lamp& gebondenlicht;
