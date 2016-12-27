@@ -4,16 +4,15 @@
 class Lamp {
 public:
 	Lamp();
-	void Deactiveer();
-	void Activeer();
-	void check();
-private:
+	Lamp(int timeout);
+	void Deactivate();
+	void Activate();
+	void Check();
 	bool actief;
-	int red;
-	int green;
-	int blue;
-	int start;
-//	void Settijd();
+private:
+	long timeout;
+	long expire;
+	bool timerExpire();
 };
 #endif
 #pragma once
