@@ -10,7 +10,7 @@ private:
   int Timer;	
   const int TimeOut = 900;
   bool Active;
-  int Value;
+  int Value = 0;
   int Pin;
 };
 
