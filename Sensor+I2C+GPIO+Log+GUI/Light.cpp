@@ -11,26 +11,26 @@ Light::Light(int pin):Pin(pin) {
 
 }
 
-void Light::Check(){
+bool Light::Check(){
 	if(Actief && Value<100) {
 		Value+=2;
 		softPwmWrite(Pin,Value);
-		return;
+		timerSet(1);
+		return 1;
 	}
 
 	if(!Actief && Value>0) {
 		Value-=2;
 		softPwmWrite(Pin,Value);
 		timerSet(1);
-		return;
+		return 1;
 	}
 
 	if(time(0) > Timer) {
 		this->Active=false;
-		return;	
+		timerSet(0);
+		return 0;	
 	}
-	
-	return 0;
 }
 
 void Light::timerSet(bool x) {
