@@ -5,36 +5,42 @@
 
 using namespace std;
 
-Light::Light(int pin):Pin(pin){
+Light::Light(int pin):Pin(pin) {
 
 	softPwmCreate(pin,0,100);
 
 }
 
 void Light::Check(){
-
-	if(Actief & Value<100){
+	if(Actief && Value<100) {
 		Value+=2;
 		softPwmWrite(Pin,Value);
 		return;
 	}
 
-	if(!Actief & Value>0){
+	if(!Actief && Value>0) {
 		Value-=2;
-		softPwmWrite(Pin,Value);		
+		softPwmWrite(Pin,Value);
+		timerSet(1);
 		return;
-	}	
+	}
 
-	if(time(0) > timer)
-		Active=false;
+	if(time(0) > Timer) {
+		this->Active=false;
+		return;	
+	}
+	
+	return 0;
 }
 
-void Light::Set_Light(bool x){
-	if(x){
-		Timer = time(0) + TimeOut;
-		Active=true;
-		
+void Light::timerSet(bool x) {
+	if(x) {
+		this->Timer = time(0) + this->TimeOut;
+		this->Active=true;
+		return;
 	}
-	else
+	else {
 		Active=false;
+		return;
+	}
 }
