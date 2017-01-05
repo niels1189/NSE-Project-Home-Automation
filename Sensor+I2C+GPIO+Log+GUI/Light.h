@@ -7,9 +7,9 @@ public:
   void Check();
   void timerSet(bool x);
 private:	
-  int Timer;	
+  int Timer = 0;	
   const int TimeOut = 900;
-  bool Active;
+  bool Active = false;
   int Value = 0;
   int Pin;
 };
