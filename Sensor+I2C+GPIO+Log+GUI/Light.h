@@ -9,7 +9,7 @@
 
 class Light{
 	public:
-		Light(int pin);
+	Light(int pin);
         void TurnOn(int pin);
         void TurnOff(int pin);
         bool Check();                   // Routine check
