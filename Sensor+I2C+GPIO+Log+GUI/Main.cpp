@@ -15,6 +15,13 @@
 
 using namespace std;
 
+int sumActive(int active[]) {
+	int sum=0;
+	for(int i=0;i<sizeof(active[])/sizeof(active[0]);i++)
+		sum+=active[i];
+	return sum;
+}
+
 int main() {	
 	wiringPiSetupGpio();
 
@@ -32,20 +39,26 @@ int main() {
 	sensors.push_back(&s2);
 
 	lights.push_back(&x);	
-
-	int active=0;
 	int i;
+	
+	for(i=0;i<sensors.capacity();i++); // create an array equal to the amount of sensors
+		int active[i];
+	
+	for(i=0;i<sensors.capacity();i++) { // set all sensors as inactive
+		active[i]=0;
+	}
+	int active=0;
 
-	while(1){
-
-		for(i=0;i<sensors.capacity();i++)
-			if(sensors[i]->Check())
-				active++;
-		if(active==0)
+	while(1) {
+		for(i=0;i<sensors.capacity();i++) // For every sensor
+			if(sensors[i]->Check()) // Call their check function
+				active[i]=1; // And if the check is positive (returns true). 
+			else active[i]=0;
+		if(sumActive(active)==0) {
 			cout<<"uhoh"<<endl;
-		active=0;
-
-		for(i=0;i<lights.capacity();i++)
-			lights[i]->Check();
+			// Guard.sendAlert();
+		}
+		for(i=0;i<lights.capacity();i++) // For every light
+			lights[i]->Check(); // Check if timer expired yet
 	}
 }
