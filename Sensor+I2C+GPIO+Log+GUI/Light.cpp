@@ -1,46 +1,62 @@
 #include "Light.h"
 #include <ctime>
-#include <WiringPi.h>
+#include <wiringPi.h>
 #include <softPwm.h>
+#include <thread>
+#include <chrono>
 
 using namespace std;
 
-Light::Light(int pin):Pin(pin) {
+
+
+void TurnOn(int pin){
+	int Value=0;
+	while(Value<100){
+		Value+=1;
+		softPwmWrite(pin,Value);
+		this_thread::sleep_for(chrono::milliseconds(20));
+	}
+	return;
+}
+
+void TurnOff(int pin){
+	int Value=100;
+	while(Value>0){
+		Value-=1;
+		softPwmWrite(pin,Value);
+		this_thread::sleep_for(chrono::milliseconds(20));
+	}
+	return;
+}
+
+
+
+Light::Light(int pin):Pin(pin){
 
 	softPwmCreate(pin,0,100);
 
 }
 
 bool Light::Check(){
-	if(Actief && Value<100) {
-		Value+=2;
-		softPwmWrite(Pin,Value);
-		timerSet(1);
+	if((time(0) > Timer)&&(Active)){
+		Active=false;
+		thread turnoff(TurnOff, Pin);
+		turnoff.detach();
+		return 0;
+	}
+	else if(Active)
 		return 1;
-	}
-
-	if(!Actief && Value>0) {
-		Value-=2;
-		softPwmWrite(Pin,Value);
-		timerSet(1);
-		return 1;
-	}
-
-	if(time(0) > Timer) {
-		this->Active=false;
-		timerSet(0);
-		return 0;	
-	}
+	else
+		return 0;
 }
 
-void Light::timerSet(bool x) {
-	if(x) {
-		this->Timer = time(0) + this->TimeOut;
-		this->Active=true;
-		return;
+void Light::Set_Light(bool x){
+	if((x) && (!Active)){
+		Timer = time(0) + TimeOut;
+		Active=true;
+		thread turnon(TurnOn, Pin);
+		turnon.detach();
 	}
-	else {
-		Active=false;
-		return;
-	}
+	else if(!x)
+		Timer=time(0)+3; //3 seconds till lights turn off
 }

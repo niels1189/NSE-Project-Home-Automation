@@ -1,17 +1,20 @@
 #ifndef LIGHT_H
 #define LIGHT_H
 
+#include <thread>
+
 class Light{
 public:
-  Light(int pin);
-  void Check();
-  void timerSet(bool x);
+Light(int pin);
+bool Check();
+void Set_Light(bool x);
 private:	
-  int Timer = 0;	
-  const int TimeOut = 900;
-  bool Active = false;
-  int Value = 0;
-  int Pin;
+int Timer =0 ;	
+const int TimeOut = 900;
+bool Active = false;
+//int Value = 0;
+int Pin;
+
 };
 
 #endif

@@ -13,7 +13,7 @@ public:
 	int GetValue();  //Gives the value from I2C
 	bool Alive();   //Checks if the sensor is still alive  |  true if alive
 	void SetActive(); //resets the timer
-	//virtual bool check() =0;
+	virtual bool Check() =0;
 	//virtual ~Sensor();
 private:
 	I2CCom& i2c;  //I2C Com file/setup
