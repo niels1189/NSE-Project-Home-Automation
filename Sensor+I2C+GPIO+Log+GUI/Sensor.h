@@ -9,7 +9,7 @@
 #include "Camera.h"
 class Sensor {
 public:
-	Sensor(int id,I2CCom& x,Camera& cam); //constructor with I2C id
+	Sensor(int id,I2CCom& x); //constructor with I2C id
 	int GetValue();  //Gives the value from I2C
 	bool Alive();   //Checks if the sensor is still alive  |  true if alive
 	void SetActive(); //resets the timer
@@ -20,9 +20,6 @@ private:
 	int ID;   //I2C address
 	int Timer;  //the epoch of when it dies
 	const int TimeOut = 60;  //value in seconds of how long a sensor can stay non-active
-protected:
-	static bool slaap;
-	Camera& camera;
 };
 
 #endif
