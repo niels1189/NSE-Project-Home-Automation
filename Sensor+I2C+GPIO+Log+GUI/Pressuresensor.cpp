@@ -3,7 +3,7 @@
 #include "Log.h"
 #include <string>
 
-PressureSensor::PressureSensor(int id,I2CCom& x,Camera& cam,Log& log):Sensor(id,x,cam),value(0),log(log){}
+PressureSensor::PressureSensor(int id,I2CCom& x,Log& log):Sensor(id,x),value(0),log(log){}
 
 bool PressureSensor::Check(){
 
