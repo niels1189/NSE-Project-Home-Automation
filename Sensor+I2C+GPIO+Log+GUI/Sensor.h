@@ -19,7 +19,7 @@ private:
 	I2CCom& i2c;  //I2C Com file/setup
 	int ID;   //I2C address
 	int Timer;  //the epoch of when it dies
-	const int TimeOut = 60;  //value in seconds of how long a sensor can stay non-active
+	const int TimeOut = 900;  //value in seconds of how long a sensor can stay non-active
 };
 
 #endif
