@@ -8,10 +8,8 @@
 */
 
 class Light{
-	public:
-		Light(int pin);
-        void TurnOn(int pin);
-        void TurnOff(int pin);
+    public:
+	Light(int pin);
         bool Check();                   // Routine check
         void Set_Light(bool x);
     private:	
