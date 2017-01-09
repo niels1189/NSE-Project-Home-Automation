@@ -1,3 +1,6 @@
+//g++ *.cpp -lpthread -lwiringPi -std=c++11
+//LATER MET GUI MAKEFILE <sudo make>
+
 #include "Sensor.h"
 #include "I2C.h"
 #include "Log.h"
