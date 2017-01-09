@@ -31,9 +31,9 @@ int main() {
 	Light x(22);
 	Camera cam;		//The camera	
 	I2CCom i2c(I2CLOC);     //the i2c to communicate with sensors
-	MotionSensor s1(0x05,i2c,cam,x);  
+	MotionSensor s1(0x05,i2c);  
 	Log log(LOG);
-	PressureSensor s2(0x06, i2c, cam, log);
+	PressureSensor s2(0x06, i2c, log);
 
 	sensors.push_back(&s1);
 	sensors.push_back(&s2);
@@ -51,9 +51,10 @@ int main() {
 
 	while(1) {
 		for(i=0;i<sensors.capacity();i++) // For every sensor
-			if(sensors[i]->Check()) // Call their check function
+			if(sensors[i]->Check()) { // Call their check function
 				active[i]=1; // And if the check is positive (returns true). 
-			else active[i]=0;
+				//TODO ENABLE LIGHTS
+			} else active[i]=0;
 		if(sumActive(active)==0) {
 			cout<<"uhoh"<<endl;
 			// Guard.sendAlert();
