@@ -6,28 +6,28 @@
 #include <cstdio>
 using namespace std;
 
-Log::Log(const char* loc):loc(loc){}
+Log::Log(const char* loc):loc(loc){} //the constructor saving the given file name
 
-void Log::Write(std::string text){
+void Log::Write(std::string text){ //write the text on the given file
 	ofstream File;
-	File.open(loc, (std::ios_base::out|std::ios_base::app));
-	File<<text;
-	File.close();
+	File.open(loc, (std::ios_base::out|std::ios_base::app)); //open file (containing content)
+	File<<text;  //write text to file
+	File.close();  //close file (save file)
 }
 
 void Log::LogInBed(){
-	time_t t = time(0);   // get time now
-	string y;
-	y=ctime(&t);
-	y.erase(y.find('\n'));
-	Write(string(y + " : In Bed\n"));	
+	time_t t = time(0);   // get epoch now
+	string y;	
+	y=ctime(&t);		//convert epoch into date string
+	y.erase(y.find('\n'));  //remove the end of the string
+	Write(string(y + " : In Bed\n"));	//add the text ": in bed" and write to log file
 }
 
 void Log::LogOutBed(){
-	time_t t = time(0);   // get time now
+	time_t t = time(0);   // get epoch now
 	string y;
-	y=ctime(&t);
-	y.erase(y.find('\n'));
-	Write(string(y + " : Out Bed\n"));	
+	y=ctime(&t);		//convert epoch to date string
+	y.erase(y.find('\n'));  //remove the end of the string
+	Write(string(y + " : Out Bed\n"));	//add the text ": out bed" and write to log file
 }
 
