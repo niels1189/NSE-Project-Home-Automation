@@ -18,6 +18,10 @@
 
 using namespace std;
 
+vector<Sensor*> sensors;    //Vector of the sensors
+vector<Light*> lights;      //Vector of the lights
+Camera& cam;                //Pointer to the camera
+
 int sumActive(int active[]) {
 	int sum=0;
 	for(int i=0;i<sizeof(active[])/sizeof(active[0]);i++)
@@ -25,14 +29,14 @@ int sumActive(int active[]) {
 	return sum;
 }
 
+/*Sets the camera*/
+void setCam(bool b){
+    cam.setCamera(b);
+}
+
 int main() {	
 	wiringPiSetupGpio();
-
-	vector<Sensor*> sensors;	
-	vector<Light*> lights;
-
 	Light x(22);
-	Camera cam;		//The camera	
 	I2CCom i2c(I2CLOC);     //the i2c to communicate with sensors
 	MotionSensor s1(0x05,i2c);  
 	Log log(LOG);

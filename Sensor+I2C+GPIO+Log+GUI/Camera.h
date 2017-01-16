@@ -5,9 +5,9 @@
 class Camera{
 public:
 	Camera();
-	void Set_Camera(bool x);
+	void setCamera(bool b);
 private:
-	bool On_Off = false;
+	bool On = false;
 };
 
 #endif
