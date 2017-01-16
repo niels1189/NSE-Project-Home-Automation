@@ -24,6 +24,10 @@ vector<int> values;         //Vector of the values from the sensors
 vector<int> active;
 Camera& cam;                //Pointer to the camera
 
+bool sleep = false;
+bool day = true;
+bool anomaly = false;
+int temperature = 20;
 
 
 int sumActive(int active[]) {
@@ -33,8 +37,9 @@ int sumActive(int active[]) {
 	return sum;
 }
 
+void checkAnomaly();
 
-void setCam(bool b);
+void checkCam();
 
 void init();
 
@@ -69,12 +74,35 @@ void init() {
     sensors.push_back(&s2);
     
     lights.push_back(&x);
-    
+
     active.resize(sensors.sizeof);
     values.resize(sensors.sizeof);
 }
 
 /*Sets the camera*/
-void setCam(bool b){
-    cam.setCamera(b);
+void checkCam(){
+    if(day) {
+        cam.setCamera(true);
+    } else if(anamoly) {
+        cam.setCamera(true);
+    } else {
+        cam.setCamera(false);
+    }
 }
+
+void checkAnomaly(){
+    
+    int pressureValue = values[2];
+    
+    if(pressureValue > 20 && value < 150) {
+        anomaly = true;
+    }
+    if(pressureValue > 150 && pressureValue < 200) { // Changing positions while asleep
+        //Do nothing, maybe verify if person really is sleeping
+    }
+    if(pressureValue > 200) {
+        sleep = true;
+    }
+    
+}
+
