@@ -42,7 +42,7 @@ int main() {
 
     
     while(1) {
-        for(i=0;i<sensors.capacity();i++) // For every sensor
+        for(int i=0;i<sensors.capacity();i++) // For every sensor
             if(sensors[i]->Check()) { // Call their check function
 				active[i]=1; // And if the check is positive (returns true). 
 				//TODO ENABLE LIGHTS
