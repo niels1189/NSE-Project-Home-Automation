@@ -20,7 +20,11 @@ using namespace std;
 
 vector<Sensor*> sensors;    //Vector of the sensors
 vector<Light*> lights;      //Vector of the lights
+vector<int> values;         //Vector of the values from the sensors
+vector<int> active;
 Camera& cam;                //Pointer to the camera
+
+
 
 int sumActive(int active[]) {
 	int sum=0;
@@ -29,36 +33,17 @@ int sumActive(int active[]) {
 	return sum;
 }
 
-/*Sets the camera*/
-void setCam(bool b){
-    cam.setCamera(b);
-}
+
+void setCam(bool b);
+
+void init();
 
 int main() {	
-	wiringPiSetupGpio();
-	Light x(22);
-	I2CCom i2c(I2CLOC);     //the i2c to communicate with sensors
-	MotionSensor s1(0x05,i2c);  
-	Log log(LOG);
-	PressureSensor s2(0x06, i2c, log);
 
-	sensors.push_back(&s1);
-	sensors.push_back(&s2);
-
-	lights.push_back(&x);	
-	int i;
-	
-	for(i=0;i<sensors.capacity();i++); // create an array equal to the amount of sensors
-		int active[i];
-	
-	for(i=0;i<sensors.capacity();i++) { // set all sensors as inactive
-		active[i]=0;
-	}
-	int active=0;
-
-	while(1) {
-		for(i=0;i<sensors.capacity();i++) // For every sensor
-			if(sensors[i]->Check()) { // Call their check function
+    
+    while(1) {
+        for(i=0;i<sensors.capacity();i++) // For every sensor
+            if(sensors[i]->Check()) { // Call their check function
 				active[i]=1; // And if the check is positive (returns true). 
 				//TODO ENABLE LIGHTS
 			} else active[i]=0;
@@ -69,4 +54,27 @@ int main() {
 		for(i=0;i<lights.capacity();i++) // For every light
 			lights[i]->Check(); // Check if timer expired yet
 	}
+}
+
+/*Init for the main*/
+void init() {
+    wiringPiSetupGpio();
+    Light x(22);
+    I2CCom i2c(I2CLOC);     //the i2c to communicate with sensors
+    MotionSensor s1(0x05,i2c);
+    Log log(LOG);
+    PressureSensor s2(0x06, i2c, log);
+    
+    sensors.push_back(&s1);
+    sensors.push_back(&s2);
+    
+    lights.push_back(&x);
+    
+    active.resize(sensors.sizeof);
+    values.resize(sensors.sizeof);
+}
+
+/*Sets the camera*/
+void setCam(bool b){
+    cam.setCamera(b);
 }
