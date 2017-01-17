@@ -1,5 +1,9 @@
 #include "pressureSensor.h"
 
+
+void checkSensors();
+
+
 int main(void) {
 	pressureSensor b(172); 
 
@@ -22,3 +26,5 @@ int main(void) {
 
 	return 0;
 }
+
+checkSensors
