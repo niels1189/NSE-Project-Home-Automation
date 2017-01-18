@@ -2,7 +2,7 @@
 #include "MotionSensor.h"
 
 bool MotionSensor::check(){
-	if(getValue()>0) { // Motion sensor is active
+	if(getValue()>60) { // Motion sensor is active
 		setActive(); // Set dead-timer
 		return true;
 	}
