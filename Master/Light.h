@@ -10,13 +10,13 @@
 class Light{
     public:
 	Light(int pin);
-        bool Check();                   // Routine check
-        void Set_Light(bool x);
+        bool check();                   // Routine check
+        void setLight(bool b);
     private:	
-        int Timer           = 0; 
-        const int TimeOut   = 900;      // How long will it take for the lights to turn off automatically
-        bool Active         = false;    // Lights are off by default
-        int Pin;
+        int timer           = 0;
+        const int timeOut   = 900;      // How long will it take for the lights to turn off automatically
+        bool active         = false;    // Lights are off by default
+        int pin;
 };
 
 #endif

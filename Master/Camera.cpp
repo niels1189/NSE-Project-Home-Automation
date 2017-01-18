@@ -3,5 +3,5 @@
 Camera::Camera(){}
 
 void Camera::setCamera(bool b){
-    On = b;
+    on = b;
 }

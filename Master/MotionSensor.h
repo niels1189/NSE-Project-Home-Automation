@@ -6,7 +6,7 @@
 
 class MotionSensor:public Sensor{
   public:
-    bool Check();
+    bool check();
   private:
 };
 

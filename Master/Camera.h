@@ -7,7 +7,7 @@ public:
 	Camera();
 	void setCamera(bool b);
 private:
-	bool On = false;
+	bool on = false;
 };
 
 #endif

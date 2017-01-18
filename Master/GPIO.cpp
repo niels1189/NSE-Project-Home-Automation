@@ -21,7 +21,7 @@ GPIO::GPIO(){}
 int GPIO::GPIOExport(int pin){
 	#define BUFFER_MAX 3
 	char buffer[BUFFER_MAX];
-	ssize_t bytes_written;
+	ssize_t bytesWritten;
 	int fd;
  
 	fd = open(("/sys/class/gpio/export"), O_WRONLY);
@@ -30,15 +30,15 @@ int GPIO::GPIOExport(int pin){
 		return(-1);
 	}
  
-	bytes_written = snprintf(buffer, BUFFER_MAX, "%d", pin);
-	write(fd, buffer, bytes_written);
+	bytesWritten = snprintf(buffer, BUFFER_MAX, "%d", pin);
+	write(fd, buffer, bytesWritten);
 	close(fd);
 	return(0);
 }
 
 int GPIO::GPIOUnexport(int pin){
 	char buffer[BUFFER_MAX];
-	ssize_t bytes_written;
+	ssize_t bytesWritten;
 	int fd;
  
 	fd = open("/sys/class/gpio/unexport", O_WRONLY);
@@ -47,8 +47,8 @@ int GPIO::GPIOUnexport(int pin){
 		return(-1);
 	}
  
-	bytes_written = snprintf(buffer, BUFFER_MAX, "%d", pin);
-	write(fd, buffer, bytes_written);
+	bytesWritten = snprintf(buffer, BUFFER_MAX, "%d", pin);
+	write(fd, buffer, bytesWritten);
 	close(fd);
 	return(0);
 }
@@ -78,12 +78,12 @@ int GPIO::GPIODirection(int pin, int dir){
  
 int GPIO::GPIORead(int pin){
 
-	if(PinsInUse.find(pin)==PinsInUse.end()){ //if pin is never used 
+	if(pinsInUse.find(pin)==pinsInUse.end()){ //if pin is never used 
 		if(GPIOExport(pin)!=0)
 			return -2;
 		if(GPIODirection(pin, 0)!=0)
 			return -3;
-		PinsInUse.insert(pair<int,int>(pin,0));
+		pinsInUse.insert(pair<int,int>(pin,0));
 	}
 
 	#define VALUE_MAX 30
@@ -110,17 +110,17 @@ int GPIO::GPIORead(int pin){
 
 int GPIO::GPIOWrite(int pin, int value){
 
-	if(PinsInUse.find(pin)==PinsInUse.end()){ //if pin is never used 
+	if(pinsInUse.find(pin)==pinsInUse.end()){ //if pin is never used 
 		if(GPIOExport(pin)!=0)
 			return -2;
 		if(GPIODirection(pin, 1))
 			return -3;
-		PinsInUse.insert(pair<int,int>(pin,1));
+		pinsInUse.insert(pair<int,int>(pin,1));
 	}
-	else if(PinsInUse[pin]==0){ //if pin is in read mode
+	else if(pinsInUse[pin]==0){ //if pin is in read mode
 		if(GPIODirection(pin, 1))
 			return -3;
-		PinsInUse[pin]=1;
+		pinsInUse[pin]=1;
 	}
 
 
@@ -147,7 +147,7 @@ int GPIO::GPIOWrite(int pin, int value){
 
 
 GPIO::~GPIO(){
-	for(map<int,int>::iterator it=PinsInUse.begin(); it!=PinsInUse.end(); it++){
+	for(map<int,int>::iterator it=pinsInUse.begin(); it!=pinsInUse.end(); it++){
 		GPIOUnexport(it->first);
 	}
 
