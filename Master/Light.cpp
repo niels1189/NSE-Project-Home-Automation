@@ -43,7 +43,7 @@ Light::Light(int pin):Pin(pin){
 bool Light::check(){
 	if((time(0) > timer)&&(active)){ // if the current time is less than the timer (for expiry)
 		active=false; //(meaning the dead-timer for the light has expired) and the Light is still active.
-		thread turnOff(turnOff, Pin); // Turn off the lights. 
+		thread turnOff(turnOff, pin); // Turn off the lights.
 		turnOff.detach();
 		return 0; // Return 0 because the timer expired.
 	}
@@ -58,7 +58,7 @@ void Light::setLight(bool b) {
 	if((b) && (!active)) { // If b is true and the lights are off. Turn on the lights
 		timer = time(0) + timeOut; // current time + the time after which the lights will turn off sets the dead-time
 		active=true;
-		thread turnOn(turnOn, Pin);
+		thread turnOn(turnOn, pin);
 		turnOn.detach();
 	}
 	else if((b) && (active)) { // If b is true and the lights are on. Update the dead-timer (if lights are on, no need to turn them on)

@@ -8,9 +8,9 @@ using namespace std;
 
 Log::Log(const char* loc):loc(loc){} //the constructor saving the given file name
 
-void Log::write(std::string text){ //write the text on the given file
+void Log::write(string text){ //write the text on the given file
 	ofstream File;
-	File.open(loc, (std::ios_base::out|std::ios_base::app)); //open file (containing content)
+	File.open(loc, (ios_base::out|ios_base::app)); //open file (containing content)
 	File<<text;  //write text to file
 	File.close();  //close file (save file)
 }
