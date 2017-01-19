@@ -1,6 +1,7 @@
 #ifndef LOGFILE_H
 #define LOGFILE_H
-//#include <string>
+#include <string>
+
 class Log{
 private:
 	const char* loc;  //the name of the file to write in
