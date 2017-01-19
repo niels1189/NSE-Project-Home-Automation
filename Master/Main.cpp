@@ -36,6 +36,7 @@ bool asleep = false;
 bool day = true;
 bool anomaly = false;
 int temperature = 20;
+long sleepTimer = 0;
 
 
 void checkAnomaly();
@@ -123,15 +124,22 @@ void checkCam(){
 }
 
 void checkAnomaly(){
-    
-    if(pressureValue > 20 && pressureValue < 150) {
+    if(pressureValue < 20) {
+        asleep = false;
+        sleepTimer = 0;
+    } else if(pressureValue > 20 && pressureValue < 150) {
         anomaly = true;
-    }
-    if(pressureValue > 150 && pressureValue < 200) { // Changing positions while asleep
+        sleepTimer = 0;
+    } else if(pressureValue > 150 && pressureValue < 200) {
+        sleepTimer = 0;
+        // Changing positions while asleep
         //Do nothing, maybe verify if person really is sleeping
-    }
-    if(pressureValue > 200) {
-        asleep = true;
+    } else if(pressureValue > 200 && sleepTimer = 0) {
+        sleepTimer = time(0) + 900;
+    } else if(pressureValue >200 && sleepTimer != 0) {
+        if( time(0) >= sleepTimer) {
+            asleep = true
+        }
     }
     
 }
