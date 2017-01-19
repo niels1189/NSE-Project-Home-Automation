@@ -10,7 +10,7 @@
 #include<linux/i2c.h>
 #include<linux/i2c-dev.h>
 
-#include "I2C.h"
+#include "I22cCom.h"
 using namespace std;
 
 
