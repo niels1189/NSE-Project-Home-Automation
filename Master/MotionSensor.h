@@ -6,6 +6,7 @@
 
 class MotionSensor:public Sensor{
   public:
+    MotionSensor(int id,I2CCom& i2c);
     bool check();
   private:
 };
