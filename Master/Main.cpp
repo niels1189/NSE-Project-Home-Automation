@@ -25,7 +25,7 @@ PressureSensor& pressureSensor;
 Camera& cam;                //Pointer to the camera
 Log& log;
 
-int presSensValue;
+int pressureValue;
 bool sleep = false;
 bool day = true;
 bool anomaly = false;
