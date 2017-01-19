@@ -2,7 +2,6 @@
 #include <QApplication>
 #include "temperatuur.h"
 
-int temp=20;
 
 int main(int argc, char *argv[])
 {
