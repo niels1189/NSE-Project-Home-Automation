@@ -31,12 +31,13 @@ private slots:
     void tempSensor();
     void LcdNumber_2_Display(int i);
     void on_pushButton_clicked();
+    void resettimer();
 
 private:
     Ui::temperaturescreen *ui;
     int count = 0;
     int temp = 0;
-    int test = 0;
+    int resettemp = 0;
 };
 
 #endif // TEMPERATURESCREEN_H
