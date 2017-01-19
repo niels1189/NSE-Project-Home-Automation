@@ -18,7 +18,7 @@
 
 using namespace std;
 
-vector<Sensor*> motionsensors;    //Vector of the sensors
+vector<Sensor*> motionSensors;    //Vector of the sensors
 vector<Light*> lights;      //Vector of the lights
 vector<int> active;
 PressureSensor& pressureSensor;
@@ -59,6 +59,9 @@ int main() {
 		}
 		for(i=0;i<lights.capacity();i++) // For every light
 			lights[i]->Check(); // Check if timer expired yet
+        
+        checkAnomaly();
+        checkCam();
 	}
 }
 
@@ -79,12 +82,14 @@ void init() {
     sensors.push_back(&s1);
     lights.push_back(&x);
 
-    active.resize(sensors.size);
-    values.resize(sensors.size);
+    active.resize(motionSensors.size);
 }
 /*Updates sensors*/
 void updateSensors() {
     //update van elke sensor de value en de active
+    for(int i = 0; i<motionSensors.size();i++) {
+        if(motionSensors)
+    }
 }
 
 /*Send Alarm*/
@@ -105,7 +110,6 @@ void checkCam(){
 
 void checkAnomaly(){
     
-    int pressureValue = values[2];
     
     if(pressureValue > 20 && value < 150) {
         anomaly = true;
