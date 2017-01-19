@@ -6,7 +6,7 @@
 
 class GPIO{
 private:
-	std::map<int,int> PinsInUse;
+	std::map<int,int> pinsInUse;
 	int GPIOExport(int pin);
 	int GPIOUnexport(int pin);
 	int GPIODirection(int pin, int dir);
