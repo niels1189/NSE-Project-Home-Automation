@@ -8,6 +8,13 @@ temperaturescreen::temperaturescreen(QWidget *parent) :
     ui(new Ui::temperaturescreen)
 {
     ui->setupUi(this);    
+    
+    QTimer *Deadtimer = new QTimer(this);
+	Deadtimer->setInterval(15*1000);
+	Deadtimer->setSingleShot(true);
+	connect(Deadtimer,SIGNAL(timeout()),SLOT(LogOut()));
+	Deadtimer->start();
+	deadtimer=Deadtimer;
 
     ui->dial->setValue(Ingesteldetemperatuur);
 
@@ -29,16 +36,17 @@ temperaturescreen::~temperaturescreen()
     delete ui;
 }
 
+void  temperaturescreen::resettimer(){
+    deadtimer->stop();
+    deadtimer->start();
+}
+
 void temperaturescreen::tempSensor(){
 
-    test += 1;
-    if(test >= 1000){
-        temp += 1;
-            if(temp > 30){
-                temp = 0;
-            }
-        LcdNumber_2_Display(temp);
-        test = 0;
+    resettemp += 1;
+    if(resettemp >= 1000){
+        LcdNumber_2_Display(temperature);
+        resettemp = 0;
     }
 }
 
