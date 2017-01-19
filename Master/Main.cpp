@@ -123,6 +123,7 @@ void checkCam(){
     }
 }
 
+/*Checks if there is an anomaly, otherwise checks if Tim's asleep*/
 void checkAnomaly(){
     if(pressureValue < 20) {
         asleep = false;
@@ -144,6 +145,7 @@ void checkAnomaly(){
     
 }
 
+/*Checks the set temperature from the gui*/
 checkTemperature() {
     temperature = IngesteldeTemperatuur;
 }
