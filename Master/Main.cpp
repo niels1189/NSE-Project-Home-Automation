@@ -80,7 +80,7 @@ void updateSensors() {
             active[i]=0;
         }
     }
-    if(alert && asleep = false) {
+    if(alert & !asleep) {
         sendAlert();
     }
 }
