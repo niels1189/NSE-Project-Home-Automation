@@ -112,11 +112,11 @@ void sendAlert(){
 /*Sets the camera*/
 void checkCam(){
     if(day) {
-        cam.setCamera(true);
+        cam->setCamera(true);
     } else if(anomaly) {
-        cam.setCamera(true);
+        cam->setCamera(true);
     } else {
-        cam.setCamera(false);
+        cam->setCamera(false);
     }
 }
 
