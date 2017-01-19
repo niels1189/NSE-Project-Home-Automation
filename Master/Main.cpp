@@ -129,3 +129,7 @@ void checkAnomaly(){
     
 }
 
+checkTemperature() {
+    temperature = IngesteldeTemperatuur;
+}
+
