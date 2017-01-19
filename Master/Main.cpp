@@ -64,7 +64,7 @@ int main() {
 
 /*Init for the main*/
 void init() {
-	std::thread GUIloop(GUImain);
+	thread GUIloop(GUImain);
 	GUIloop.join();	
 	wiringPiSetupGpio();
 	I2CCom i2c(I2CLOC);     //the i2c to communicate with sensor
