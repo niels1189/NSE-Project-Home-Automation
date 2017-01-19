@@ -64,17 +64,23 @@ int main() {
 
 /*Init for the main*/
 void init() {
-	thread GUIloop(GUImain);
-	GUIloop.join();	
+	//GUI
+    thread GUIloop(GUImain);
+	GUIloop.join();
+    //I2C
 	wiringPiSetupGpio();
 	I2CCom i2c(I2CLOC);     //the i2c to communicate with sensor
-	Light x(22);
+	
+    //Create sensorobjects
+    Light x(22);
 	MotionSensor s1(0xFC,i2c);
 	MotionSensor s2(0xBC,i2c);
 	MotionSensor s3(0xEC,i2c);
 	PressureSensor s4(0x06, i2c);
 	Log l1(LOG);
 	Camera c1;
+    
+    //Create pointers to the sensors
 	cam = &c1;
 	log = &l1;
 	pressureSensor = &s4;
@@ -83,7 +89,7 @@ void init() {
 	motionSensors.push_back(&s3);
 	lights.push_back(&x);
 
-active.resize(motionSensors.size());
+    active.resize(motionSensors.size());
 }
 /*Updates sensors*/
 void updateSensors() {
