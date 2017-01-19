@@ -32,13 +32,6 @@ bool anomaly = false;
 int temperature = 20;
 
 
-int sumActive(int active[]) {
-	int sum=0;
-	for(int i=0;i<sizeof(active[])/sizeof(active[0]);i++)
-		sum+=active[i];
-	return sum;
-}
-
 void checkAnomaly();
 void updateSensors();
 void checkCam();
@@ -50,18 +43,6 @@ int main() {
     init();
     
     while(1) {
-        /*
-        for(int i=0;i<sensors.capacity();i++) // For every sensor
-            if(sensors[i]->Check()) { // Call their check function
-				active[i]=1; // And if the check is positive (returns true). 
-				//TODO ENABLE LIGHTS
-			} else active[i]=0;
-		if(sumActive(active)==0) {
-            sendAlert();
-		}
-		for(i=0;i<lights.capacity();i++) // For every light
-			lights[i]->Check(); // Check if timer expired yet
-        */
         updateSensors();
         checkAnomaly();
         checkCam();
@@ -85,7 +66,7 @@ void init() {
     motionSensors.push_back(&s1);
     lights.push_back(&x);
 
-    active.resize(motionSensors.size);
+    active.resize(motionSensors.size());
 }
 /*Updates sensors*/
 void updateSensors() {
