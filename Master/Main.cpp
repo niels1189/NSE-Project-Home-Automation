@@ -50,6 +50,7 @@ int main() {
         updateSensors();
         checkAnomaly();
         checkCam();
+        checkTemperature();
   }
 }
 
