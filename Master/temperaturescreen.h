@@ -36,7 +36,7 @@ private slots:
 private:
     Ui::temperaturescreen *ui;
     int count = 0;
-    int temp = 0;
+    int temperature = 0;
     int resettemp = 0;
 };
 
