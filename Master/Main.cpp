@@ -39,7 +39,7 @@ int temperature = 20;
 long sleepTimer = 0;
 
 
-void checkAnomaly();
+void checkSleep();
 void updateSensors();
 void checkCam();
 void sendAlert();
@@ -56,7 +56,7 @@ int main() {
   init();
   while(1) {
         updateSensors();
-        checkAnomaly();
+        checkSleep();
         checkCam();
         checkTemperature();
   }
@@ -130,7 +130,7 @@ void checkCam(){
 }
 
 /*Checks if there is an anomaly, otherwise checks if Tim's asleep*/
-void checkAnomaly(){
+void checkSleep(){
     if(pressureValue < 20) {
         asleep = false;
         sleepTimer = 0;
