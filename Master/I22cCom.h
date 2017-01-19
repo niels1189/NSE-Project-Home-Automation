@@ -1,5 +1,5 @@
-#ifndef I2C_H
-#define I2C_H
+#ifndef I22cCom_H
+#define I22cCom_H
 
 #include<stdio.h>
 #include<iostream>

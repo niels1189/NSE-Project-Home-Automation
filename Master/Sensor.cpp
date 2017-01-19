@@ -7,7 +7,7 @@ using namespace std;
 Sensor::Sensor(int id,I2CCom& x):id(id),timer(time(0)+timeOut),i2c(x){}
 
 int Sensor::getValue() {
-	return i2c.I2C_GetValue(ID);
+	return i2c.I2C_GetValue(id);
 }
 
 bool Sensor::alive() {
