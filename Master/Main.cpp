@@ -44,6 +44,13 @@ void checkCam();
 void sendAlert();
 void init();
 
+int GUImain(int argc, char *argv[]){
+	QApplication a(argc, argv);
+	Dialog w;
+	w.show();
+	a.exec();
+}
+
 int main() {
   init();
   while(1) {
@@ -56,27 +63,26 @@ int main() {
 
 /*Init for the main*/
 void init() {
-    QApplication a(argc, argv);
-	Dialog w;
-	w.show(); 
-    wiringPiSetupGpio();
-    I2CCom i2c(I2CLOC);     //the i2c to communicate with sensor
-    Light x(22);
-    MotionSensor s1(0xFC,i2c);
-    MotionSensor s2(0xBC,i2c);
-    MotionSensor s3(0xEC,i2c);
-    PressureSensor s4(0x06, i2c);
-    Log l1(LOG);
-    Camera c1;
-    cam = &c1;
-    log = &l1;
-    pressureSensor = &s4;
-    motionSensors.push_back(&s1);
-    motionSensors.push_back(&s2);
-    motionSensors.push_back(&s3);
-    lights.push_back(&x);
+	std::thread GUIloop(GUImain);
+	GUIloop.join();	
+	wiringPiSetupGpio();
+	I2CCom i2c(I2CLOC);     //the i2c to communicate with sensor
+	Light x(22);
+	MotionSensor s1(0xFC,i2c);
+	MotionSensor s2(0xBC,i2c);
+	MotionSensor s3(0xEC,i2c);
+	PressureSensor s4(0x06, i2c);
+	Log l1(LOG);
+	Camera c1;
+	cam = &c1;
+	log = &l1;
+	pressureSensor = &s4;
+	motionSensors.push_back(&s1);
+	motionSensors.push_back(&s2);
+	motionSensors.push_back(&s3);
+	lights.push_back(&x);
 
-    active.resize(motionSensors.size());
+active.resize(motionSensors.size());
 }
 /*Updates sensors*/
 void updateSensors() {
