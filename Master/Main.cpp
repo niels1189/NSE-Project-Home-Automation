@@ -49,6 +49,7 @@ int main() {
 
     
     while(1) {
+        /*
         for(int i=0;i<sensors.capacity();i++) // For every sensor
             if(sensors[i]->Check()) { // Call their check function
 				active[i]=1; // And if the check is positive (returns true). 
@@ -59,7 +60,7 @@ int main() {
 		}
 		for(i=0;i<lights.capacity();i++) // For every light
 			lights[i]->Check(); // Check if timer expired yet
-        
+        */
         checkAnomaly();
         checkCam();
 	}
@@ -87,8 +88,17 @@ void init() {
 /*Updates sensors*/
 void updateSensors() {
     //update van elke sensor de value en de active
+    bool alert = true;
     for(int i = 0; i<motionSensors.size();i++) {
-        if(motionSensors)
+        if(motionSensors[i]->check()) {
+            active[i]=1;
+            alert = false;
+        } else {
+            active[i]=0;
+        }
+    }
+    if(alert) {
+        sendAlert();
     }
 }
 
