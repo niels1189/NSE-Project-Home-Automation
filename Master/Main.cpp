@@ -82,7 +82,7 @@ void init() {
     cam = &c1
     log = &l1;
     pressureSensor = &s2;
-    sensors.push_back(&s1);
+    motionSensors.push_back(&s1);
     lights.push_back(&x);
 
     active.resize(motionSensors.size);
