@@ -60,7 +60,7 @@ void init() {
     Log l1(LOG);
     Camera c1();
     
-    cam = &c1
+    cam = &c1;
     log = &l1;
     pressureSensor = &s2;
     motionSensors.push_back(&s1);
