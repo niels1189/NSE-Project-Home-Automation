@@ -8,8 +8,8 @@
 #include "Light.h"
 #include "MotionSensor.h"
 #include "PressureSensor.h"
-#define I2CLOC "/dev/i2c-1"// <-- this is the real I2C device you need with the scale model
-///#define I2CLOC "/dev/simudrv"
+//#define I2CLOC "/dev/i2c-1"// <-- this is the real I2C device you need with the scale model
+#define I2CLOC "/dev/simudrv"
 #define LOG "Slaaplog.txt"
 
 #include <vector>
@@ -38,32 +38,32 @@ void checkCam();
 void sendAlert();
 void init();
 
-int main() {	
-
-    init();
-    
-    while(1) {
+int main() {
+  init();
+  while(1) {
         updateSensors();
         checkAnomaly();
         checkCam();
-	}
+  }
 }
 
 /*Init for the main*/
 void init() {
     wiringPiSetupGpio();
-    I2CCom i2c(I2CLOC);     //the i2c to communicate with sensors
-    
+    I2CCom i2c(I2CLOC);     //the i2c to communicate with sensor
     Light x(22);
-    MotionSensor s1(0x05,i2c);
-    PressureSensor s2(0x06, i2c);
+    MotionSensor s1(0xFC,i2c);
+    MotionSensor s2(0xBC,i2c);
+    MotionSensor s3(0xEC,i2c);
+    PressureSensor s4(0x06, i2c);
     Log l1(LOG);
     Camera c1;
-    
     cam = &c1;
     log = &l1;
-    pressureSensor = &s2;
+    pressureSensor = &s4;
     motionSensors.push_back(&s1);
+    motionSensors.push_back(&s2);
+    motionSensors.push_back(&s3);
     lights.push_back(&x);
 
     active.resize(motionSensors.size());
@@ -72,12 +72,13 @@ void init() {
 void updateSensors() {
     //update van elke sensor de value en de active
     bool alert = true;
-    for(int i = 0; i<motionSensors.size();i++) {
+    for(int i = 0; i<motionSensors.size()-1;i++) {
         if(motionSensors[i]->check()) {
-            active[i]=1;
+            //active[i]=1;
             alert = false;
-        } else {
-            active[i]=0;
+		cout <<"halleyula" <<endl;
+        } else{
+            //active[i]=0;
         }
     }
     if(alert & !asleep) {
