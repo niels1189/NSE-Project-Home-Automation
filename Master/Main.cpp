@@ -1,13 +1,19 @@
 //g++ *.cpp -lpthread -lwiringPi -std=c++11
 //LATER MET GUI MAKEFILE <sudo make>
 
-#include "Sensor.h"
 #include "I22cCom.h"
+// Sensors -------------------
+#include "Sensor.h"
 #include "Log.h"
 #include "Camera.h"
 #include "Light.h"
 #include "MotionSensor.h"
 #include "PressureSensor.h"
+// GUI ----------
+#include "dialog.h"
+#include <QApplication>
+#include "tempertuur.h"
+// ----------
 //#define I2CLOC "/dev/i2c-1"// <-- this is the real I2C device you need with the scale model
 #define I2CLOC "/dev/simudrv"
 #define LOG "Slaaplog.txt"
@@ -49,6 +55,9 @@ int main() {
 
 /*Init for the main*/
 void init() {
+    QApplication a(argc, argv);
+	Dialog w;
+	w.show(); 
     wiringPiSetupGpio();
     I2CCom i2c(I2CLOC);     //the i2c to communicate with sensor
     Light x(22);
