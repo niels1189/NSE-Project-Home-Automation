@@ -72,7 +72,7 @@ void init() {
 void updateSensors() {
     //update van elke sensor de value en de active
     bool alert = true;
-    for(int i = 0; i<motionSensors.size()-1;i++) {
+    for(int i = 0; i<motionSensors.size();i++) {
         if(motionSensors[i]->check()) {
             //active[i]=1;
             alert = false;
@@ -107,7 +107,6 @@ void checkCam(){
 }
 
 void checkAnomaly(){
-    
     
     if(pressureValue > 20 && pressureValue < 150) {
         anomaly = true;
