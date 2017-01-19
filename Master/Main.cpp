@@ -58,7 +58,7 @@ void init() {
     MotionSensor s1(0x05,i2c);
     PressureSensor s2(0x06, i2c);
     Log l1(LOG);
-    Camera c1();
+    Camera c1;
     
     cam = &c1;
     log = &l1;
