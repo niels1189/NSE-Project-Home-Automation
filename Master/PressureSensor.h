@@ -7,8 +7,8 @@
 
 class PressureSensor : public Sensor{
 public:
-	PressureSensor(int id,I2CCom& x);
-	bool Check();
+	PressureSensor(int sensorID,I2CCom& x);
+	bool check();
 private:
 	int value;
 };

@@ -4,10 +4,10 @@
 
 using namespace std;
 
-Sensor::Sensor(int id,I2CCom& x):id(id),timer(time(0)+timeOut),i2c(x){}
+Sensor::Sensor(int sensorID,I2CCom& x):sensorID(sensorID),timer(time(0)+timeOut),i2c(x){}
 
 int Sensor::getValue() {
-	return i2c.I2C_GetValue(id);
+	return i2c.I2C_GetValue(sensorID);
 }
 
 bool Sensor::alive() {

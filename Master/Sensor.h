@@ -9,7 +9,7 @@
 #include "Camera.h"
 class Sensor {
 public:
-	Sensor(int id,I2CCom& x); //constructor with I2C id
+	Sensor(int sensorID,I2CCom& x); //constructor with I2C id
 	int getValue();  //Gives the value from I2C
 	bool alive();   //Checks if the sensor is still alive  |  true if alive
 	void setActive(); //resets the timer

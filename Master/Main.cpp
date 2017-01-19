@@ -22,8 +22,8 @@ vector<Sensor*> motionSensors;    //Vector of the sensors
 vector<Light*> lights;      //Vector of the lights
 vector<int> active;
 PressureSensor& pressureSensor;
-Camera& cam;                //Pointer to the camera
-Log& log;
+Camera* cam;                //Pointer to the camera
+Log* log;
 
 int pressureValue;
 bool sleep = false;

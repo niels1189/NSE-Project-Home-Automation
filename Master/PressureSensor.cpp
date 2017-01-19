@@ -3,17 +3,17 @@
 #include "Log.h"
 #include <string>
 
-PressureSensor::PressureSensor(int id,I2CCom& x):Sensor(id,x),value(0){}
+PressureSensor::PressureSensor(int sensorID,I2CCom& x):Sensor(sensorID,x),value(0){}
 
-bool PressureSensor::Check(){
+bool PressureSensor::check(){
 
 	//log.Write(std::string("checked"));
 
-	if(GetValue()>0){
-		SetActive();
+	if(getValue()>0){
+		setActive();
 		return true;
 	}
-	else if(Alive()){
+	else if(alive()){
 		return true;
 	}
 	else
