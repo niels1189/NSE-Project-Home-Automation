@@ -36,7 +36,7 @@ void turnOff(int pin) { // Turn off Light on pin
 
 
 
-Light::Light(int pin):Pin(pin){
+Light::Light(int pin):pin(pin){
 	softPwmCreate(pin,0,100); // Create a PWM instance for pin with a value between 0 and 100
 }
 

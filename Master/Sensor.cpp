@@ -4,18 +4,18 @@
 
 using namespace std;
 
-Sensor::Sensor(int id,I2CCom& x):ID(id),Timer(time(0)+TimeOut),i2c(x){}
+Sensor::Sensor(int id,I2CCom& x):id(id),timer(time(0)+timeOut),i2c(x){}
 
 int Sensor::getValue() {
 	return i2c.I2C_GetValue(ID);
 }
 
 bool Sensor::alive() {
-	if (time(0) > Timer)
+	if (time(0) > timer)
 		return false;
 	return true;
 }
 
 void Sensor::setActive() {
-	Timer = time(0) + TimeOut;
+	timer = time(0) + timeOut;
 }
