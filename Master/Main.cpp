@@ -47,6 +47,7 @@ void init();
 
 int main() {	
 
+    init();
     
     while(1) {
         /*
@@ -61,6 +62,7 @@ int main() {
 		for(i=0;i<lights.capacity();i++) // For every light
 			lights[i]->Check(); // Check if timer expired yet
         */
+        updateSensors();
         checkAnomaly();
         checkCam();
 	}
