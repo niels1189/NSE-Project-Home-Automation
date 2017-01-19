@@ -111,7 +111,7 @@ void checkCam(){
 void checkAnomaly(){
     
     
-    if(pressureValue > 20 && value < 150) {
+    if(pressureValue > 20 && pressureValue < 150) {
         anomaly = true;
     }
     if(pressureValue > 150 && pressureValue < 200) { // Changing positions while asleep
