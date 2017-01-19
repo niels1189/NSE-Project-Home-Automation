@@ -99,7 +99,7 @@ void updateSensors() {
             active[i]=0;
         }
     }
-    if(alert) {
+    if(alert && sleep = false) {
         sendAlert();
     }
 }
