@@ -12,7 +12,7 @@
 // GUI ----------
 #include "dialog.h"
 #include <QApplication>
-#include "tempertuur.h"
+#include "temperatuur.h"
 // ----------
 //#define I2CLOC "/dev/i2c-1"// <-- this is the real I2C device you need with the scale model
 #define I2CLOC "/dev/simudrv"
