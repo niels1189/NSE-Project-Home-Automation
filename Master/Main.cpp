@@ -21,12 +21,12 @@ using namespace std;
 vector<Sensor*> motionSensors;    //Vector of the sensors
 vector<Light*> lights;      //Vector of the lights
 vector<int> active;
-PressureSensor& pressureSensor;
+PressureSensor* pressureSensor;
 Camera* cam;                //Pointer to the camera
 Log* log;
 
 int pressureValue;
-bool sleep = false;
+bool asleep = false;
 bool day = true;
 bool anomaly = false;
 int temperature = 20;
@@ -99,7 +99,7 @@ void updateSensors() {
             active[i]=0;
         }
     }
-    if(alert && sleep = false) {
+    if(alert && asleep = false) {
         sendAlert();
     }
 }
@@ -130,7 +130,7 @@ void checkAnomaly(){
         //Do nothing, maybe verify if person really is sleeping
     }
     if(pressureValue > 200) {
-        sleep = true;
+        asleep = true;
     }
     
 }
