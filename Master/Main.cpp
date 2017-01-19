@@ -2,7 +2,11 @@
 //LATER MET GUI MAKEFILE <sudo make>
 
 #include "Sensor.h"
+<<<<<<< Updated upstream
 #include "i2ccom.h"
+=======
+#include "I22cCom.h"
+>>>>>>> Stashed changes
 #include "Log.h"
 #include "Camera.h"
 #include "Light.h"
