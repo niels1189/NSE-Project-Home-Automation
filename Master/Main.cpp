@@ -18,13 +18,14 @@
 
 using namespace std;
 
-vector<Sensor*> sensors;    //Vector of the sensors
+vector<Sensor*> motionsensors;    //Vector of the sensors
 vector<Light*> lights;      //Vector of the lights
-vector<int> values;         //Vector of the values from the sensors
 vector<int> active;
+PressureSensor& pressureSensor;
 Camera& cam;                //Pointer to the camera
+Log& log;
 
-
+int presSensValue;
 bool sleep = false;
 bool day = true;
 bool anomaly = false;
@@ -64,15 +65,18 @@ int main() {
 /*Init for the main*/
 void init() {
     wiringPiSetupGpio();
-    Light x(22);
     I2CCom i2c(I2CLOC);     //the i2c to communicate with sensors
+    
+    Light x(22);
     MotionSensor s1(0x05,i2c);
-    Log log(LOG);
     PressureSensor s2(0x06, i2c, log);
+    Log l1(LOG);
+    Camera c1();
     
+    cam = &c1
+    log = &l1;
+    pressureSensor = &s2;
     sensors.push_back(&s1);
-    sensors.push_back(&s2);
-    
     lights.push_back(&x);
 
     active.resize(sensors.size);
