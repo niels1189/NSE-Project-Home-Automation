@@ -2,7 +2,7 @@
 //LATER MET GUI MAKEFILE <sudo make>
 
 #include "Sensor.h"
-#include "I2C.h"
+#include "i2ccom.h"
 #include "Log.h"
 #include "Camera.h"
 #include "Light.h"
