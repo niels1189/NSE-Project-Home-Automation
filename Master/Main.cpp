@@ -81,9 +81,13 @@ void updateSensors() {
             //active[i]=0;
         }
     }
+    if (s4->check()) {
+        asleep = true;
+    }
     if(alert & !asleep) {
         sendAlert();
     }
+    pressureValue = s4->getValue();
 }
 
 /*Send Alarm*/
