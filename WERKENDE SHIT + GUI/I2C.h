@@ -1,5 +1,5 @@
-#ifndef i2c_H
-#define i2c_H
+#ifndef I22cCom_H
+#define I22cCom_H
 
 #include<stdio.h>
 #include<iostream>
@@ -22,7 +22,7 @@ using namespace std;
 
 class I2CCom {
 public:
-	I2CCom(const char* File,int address);  //constructor with the file to use as buffer.
+	I2CCom(const char* File);  //constructor with the file to use as buffer.
 	int I2C_GetValue(int hex); //gets the value received from the address parameter.
 	~I2CCom();				//Deconstructor which closes the file
 private:
