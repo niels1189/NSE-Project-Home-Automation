@@ -43,8 +43,8 @@ int routine() {
     init();
 
 
-	for(int i=0;i<lights.size();i++){
-			lights[i]->Set_Light(false);
+	for(unsigned int i=0;i<lights.size();i++){
+			lights[i]->setLight(false);
 	}
 
 
@@ -55,7 +55,7 @@ int routine() {
 
 		for(i=0;i<motionSensors.capacity();i++){
 
-			if(motionSensors[i]->Check())
+			if(motionSensors[i]->check())
 				active++;	
 
 		}	
@@ -64,7 +64,7 @@ int routine() {
 		
 		active=0;		
 		for(i=0;i<lights.capacity();i++)
-			lights[i]->Check();
+			lights[i]->check();
 				
 	}
 }
