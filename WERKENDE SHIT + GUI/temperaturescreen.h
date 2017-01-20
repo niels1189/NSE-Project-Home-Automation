@@ -40,7 +40,7 @@ private:
     Ui::temperaturescreen *ui;
     int count = 0;
     int temp = 0;
-    int test = 0;
+    int resetTemp = 0;
 };
 
 #endif // TEMPERATURESCREEN_H
