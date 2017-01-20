@@ -26,7 +26,7 @@ vector<Sensor*> motionSensors;    //Vector of the sensors
 vector<Light*> lights;      //Vector of the lights
 PressureSensor* pressureSensor;
 Camera* cam;                //Pointer to the camera
-//Log* log1;
+Log* log1;
 
 int pressureValue;
 bool asleep = false;
@@ -75,7 +75,7 @@ void init() {
     Light l2(22);
     Light l3(23);
     Camera c1;		//The camera
-    //Log lo1(LOG);
+    Log lo1(LOG);
 
     I2CCom i2c(I2CLOC,0x08);     //the i2c to communicate with sensors
     MotionSensor m1(0xFC,i2c);
@@ -89,7 +89,7 @@ void init() {
    
     pressureSensor = &s2;
     cam = &c1;
-    //log1 = &lo1;
+    log1 = &lo1;
     
     motionSensors.shrink_to_fit();
     
