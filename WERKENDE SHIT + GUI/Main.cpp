@@ -50,7 +50,7 @@ int routine() {
 	}
 
 	while(1){
-        updateSensors();
+        //updateSensors();
     }
 
 }
