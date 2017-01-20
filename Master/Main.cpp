@@ -49,14 +49,14 @@ void init();
 
 
 int main(int argc, char* argv[]) {	
-	/*
+	
 	QApplication a(argc, argv);
 	Dialog w;
    	w.show();
-	*/
+	
   init();
   while(1) {
-	//a.processEvents();
+	a.processEvents();
         updateSensors();
         checkSleep();
         checkCam();
@@ -67,8 +67,8 @@ int main(int argc, char* argv[]) {
 /*Init for the main*/
 void init() {
 	//GUI
-    thread GUIloop(GUImain);
-	GUIloop.join();
+    //thread GUIloop(GUImain);
+	//GUIloop.join();
     //I2C
 	wiringPiSetupGpio();
 	I2CCom i2c(I2CLOC);     //the i2c to communicate with sensor
