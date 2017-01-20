@@ -19,10 +19,11 @@
 #include <QApplication>
 #include "temperatuur.h"
 //
+using namespace std;
+
 
 vector<Sensor*> motionSensors;    //Vector of the sensors
 vector<Light*> lights;      //Vector of the lights
-vector<int> active;
 PressureSensor* pressureSensor;
 Camera* cam;                //Pointer to the camera
 Log* log;
@@ -36,7 +37,7 @@ long sleepTimer = 0;
 
 void init();
 
-using namespace std;
+
 int routine() {	
 
     init();
@@ -52,9 +53,9 @@ int routine() {
 
 	while(1){
 
-		for(i=0;i<sensors.capacity();i++){
+		for(i=0;i<motionSensors.capacity();i++){
 
-			if(sensors[i]->Check())
+			if(motionSensors[i]->Check())
 				active++;	
 
 		}	
@@ -83,7 +84,6 @@ int main(int argc, char *argv[]){
 
 void init() {
     wiringPiSetupGpio();
-    
     
     Light l1(18);
     Light l2(25);
