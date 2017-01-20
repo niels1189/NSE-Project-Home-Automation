@@ -4,7 +4,9 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql widgets
+QT       += core gui sql
+CONFIG += c++11
+QMAKE_CXXFLAGS += -lptreads -lwiringPi
 
 
 
