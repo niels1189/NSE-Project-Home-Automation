@@ -50,7 +50,7 @@ int routine() {
 	}
 
 	while(1){
-        //updateSensors();
+        updateSensors();
     }
 
 }
@@ -101,7 +101,7 @@ void init() {
     lights.shrink_to_fit();
 }
 /*Updates sensors*/
-/*void updateSensors() {
+void updateSensors() {
     
     int active=0;
     unsigned int i;
@@ -128,11 +128,11 @@ void init() {
         asleep = true;
     }
     if(alert & !asleep) {
-        sendAlert();
+        //sendAlert();
     }
     pressureValue = pressureSensor->getValue();
 }
-*/
+
 
 /*Send Alarm*/
 void sendAlert(){
