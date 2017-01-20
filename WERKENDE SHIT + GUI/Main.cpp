@@ -35,8 +35,11 @@ bool anomaly = false;
 int temperature = 20;
 long sleepTimer = 0;
 
+void checkSleep();
+void updateSensors();
+void checkCam();
+void sendAlert();
 void init();
-
 
 int routine() {	
 
@@ -114,4 +117,44 @@ void init() {
     
     lights.shrink_to_fit();
 }
+
+/*Send Alarm*/
+void sendAlert(){
+    cout<<"Alert"<<endl;
+}
+
+/*Sets the camera*/
+void checkCam(){
+    if(day) {
+        cam->setCamera(true);
+    } else if(anomaly) {
+        cam->setCamera(true);
+    } else {
+        cam->setCamera(false);
+    }
+}
+
+/*Checks if there is an anomaly, otherwise checks if Tim's asleep*/
+void checkSleep(){
+    if(pressureValue < 20) {
+        asleep = false;
+        sleepTimer = 0;
+    } else if(pressureValue > 20 && pressureValue < 150) {
+        anomaly = true;
+        sleepTimer = 0;
+    } else if(pressureValue > 150 && pressureValue < 200) {
+        sleepTimer = 0;
+        // Changing positions while asleep
+        //Do nothing, maybe verify if person really is sleeping
+    } else if(pressureValue > 200 && sleepTimer == 0) {
+        sleepTimer = time(0) + 900;
+    } else if(pressureValue >200 && sleepTimer != 0) {
+        if( time(0) >= sleepTimer) {
+            asleep = true;
+        }
+    }
+    
+}
+
+
 
