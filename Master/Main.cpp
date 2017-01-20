@@ -9,9 +9,11 @@
 #include "Light.h"
 #include "MotionSensor.h"
 #include "PressureSensor.h"
-// GUI ----------
-#include "dialog.h"
+// GUI includes
 #include <QApplication>
+#include "dialog.h"
+#include "screenafterlogin.h"
+#include "temperaturescreen.h"
 #include "temperatuur.h"
 // ----------
 //#define I2CLOC "/dev/i2c-1"// <-- this is the real I2C device you need with the scale model
@@ -45,16 +47,16 @@ void checkCam();
 void sendAlert();
 void init();
 
-int GUImain(int argc, char *argv[]){
+
+int main(int argc, char* argv[]) {	
+	/*
 	QApplication a(argc, argv);
 	Dialog w;
-	w.show();
-	a.exec();
-}
-
-int main() {
+   	w.show();
+	*/
   init();
   while(1) {
+	//a.processEvents();
         updateSensors();
         checkSleep();
         checkCam();
