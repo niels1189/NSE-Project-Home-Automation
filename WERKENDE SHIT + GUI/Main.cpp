@@ -50,26 +50,10 @@ int routine() {
 			lights[i]->setLight(false);
 	}
 
-
-	int active=0;
-	unsigned int i;
-
 	while(1){
+        updateSensors();
+    }
 
-		for(i=0;i<motionSensors.capacity();i++){
-
-			if(motionSensors[i]->check())
-				active++;	
-
-		}	
-		if(active==0)
-			cout<<"uhoh"<<endl;
-		
-		active=0;		
-		for(i=0;i<lights.capacity();i++)
-			lights[i]->check();
-				
-	}
 }
 
 
@@ -117,6 +101,40 @@ void init() {
     
     lights.shrink_to_fit();
 }
+/*Updates sensors*/
+void updateSensors() {
+    
+    int active=0;
+    unsigned int i;
+    bool alert = false;
+    
+    for(i=0;i<motionSensors.size();i++){
+        
+        if(motionSensors[i]->check())
+            active++;
+        
+    }
+    if(active==0) {
+        alert = true;
+    }
+    
+    for(i=0;i<lights.size();i++){
+        lights[i]->check();
+				
+    }
+    
+    //update van elke sensor de value en de active
+    bool alert = true;
+
+    if (pressureSensor->check()) {
+        asleep = true;
+    }
+    if(alert & !asleep) {
+        sendAlert();
+    }
+    pressureValue = pressureSensor->getValue();
+}
+
 
 /*Send Alarm*/
 void sendAlert(){
