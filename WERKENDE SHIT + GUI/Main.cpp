@@ -89,7 +89,7 @@ void init() {
    
     pressureSensor = &s2;
     cam = &c1;
-    //log = &lo1;
+    log1 = &lo1;
     
     motionSensors.shrink_to_fit();
     
