@@ -20,6 +20,19 @@
 #include "temperatuur.h"
 //
 
+vector<Sensor*> motionSensors;    //Vector of the sensors
+vector<Light*> lights;      //Vector of the lights
+vector<int> active;
+PressureSensor* pressureSensor;
+Camera* cam;                //Pointer to the camera
+Log* log;
+
+int pressureValue;
+bool asleep = false;
+bool day = true;
+bool anomaly = false;
+int temperature = 20;
+long sleepTimer = 0;
 
 void init();
 
@@ -71,26 +84,28 @@ int main(int argc, char *argv[]){
 void init() {
     wiringPiSetupGpio();
     
-    vector<Sensor*> sensors;
-    vector<Light*> lights;
     
     Light l1(18);
     Light l2(25);
     Light l3(23);
-    Camera cam;		//The camera
+    Camera c1;		//The camera
+    Log l1(LOG);
+
     I2CCom i2c(I2CLOC,0x08);     //the i2c to communicate with sensors
     MotionSensor m1(0xFC,i2c,cam,l1);
     MotionSensor m2(0xBC,i2c,cam,l2);
     MotionSensor m3(0xEC,i2c,cam,l3);
-    Log log(LOG);
     PressureSensor s2(0xAC, i2c, cam, log);
     
-    sensors.push_back(&m1);
-    sensors.push_back(&m2);
-    sensors.push_back(&m3);
-    sensors.push_back(&s2);
+    motionSensors.push_back(&m1);
+    motionSensors.push_back(&m2);
+    motionSensors.push_back(&m3);
+   
+    pressureSensor = &s2;
+    cam = &c1;
+    log = &l1;
     
-    sensors.shrink_to_fit();
+    motionSensors.shrink_to_fit();
     
     lights.push_back(&l1);
     lights.push_back(&l2);
