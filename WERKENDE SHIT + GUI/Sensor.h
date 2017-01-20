@@ -5,7 +5,7 @@
 * A parent class for the pressure- and motionsensor
 * Goes over the deadtimers and I2C communication.
 */
-#include "I22cCom.h"
+#include "I2C.h"
 #include "Camera.h"
 class Sensor {
 public:

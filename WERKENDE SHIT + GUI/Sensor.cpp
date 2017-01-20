@@ -1,5 +1,5 @@
 #include "Sensor.h"
-#include "I22cCom.h"
+#include "I2C.h"
 #include <ctime>
 
 using namespace std;
