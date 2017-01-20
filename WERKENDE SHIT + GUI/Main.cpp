@@ -103,10 +103,10 @@ void init() {
 /*Updates sensors*/
 void updateSensors() {
     
-    int active=0;
+    //int active=0;
     unsigned int i;
     bool alert = false;
-    
+    /*
     for(i=0;i<motionSensors.size();i++){
         
         if(motionSensors[i]->check())
@@ -121,7 +121,7 @@ void updateSensors() {
         lights[i]->check();
 				
     }
-    /*
+    */
     //update van elke sensor de value en de active
 
     if (pressureSensor->check()) {
@@ -130,8 +130,9 @@ void updateSensors() {
     if(alert & !asleep) {
         sendAlert();
     }
+    
     pressureValue = pressureSensor->getValue();
-    */
+
 }
 
 
