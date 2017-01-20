@@ -89,7 +89,7 @@ void init() {
     Light l2(25);
     Light l3(23);
     Camera c1;		//The camera
-    Log lo1 = log(LOG);
+    Log lo1 = Log(LOG);
 
     I2CCom i2c(I2CLOC,0x08);     //the i2c to communicate with sensors
     MotionSensor m1(0xFC,i2c);
