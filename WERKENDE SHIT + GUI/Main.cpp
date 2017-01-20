@@ -45,7 +45,6 @@ int routine() {
 
     init();
 
-
 	for(unsigned int i=0;i<lights.size();i++){
 			lights[i]->setLight(false);
 	}
@@ -124,7 +123,6 @@ void updateSensors() {
     }
     
     //update van elke sensor de value en de active
-    bool alert = true;
 
     if (pressureSensor->check()) {
         asleep = true;
