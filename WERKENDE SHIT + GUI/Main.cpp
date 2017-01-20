@@ -28,7 +28,7 @@ PressureSensor* pressureSensor;
 Camera* cam;                //Pointer to the camera
 Log* log1;
 
-nt pressureValue;
+int pressureValue;
 bool asleep = false;
 bool day = true;
 bool anomaly = false;
