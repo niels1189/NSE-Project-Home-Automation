@@ -2,6 +2,6 @@
 
 Camera::Camera(){}
 
-void Camera::Set_Camera(bool x){
-	On_Off = x;	
+void Camera::setCamera(bool b){
+    on = b;
 }
