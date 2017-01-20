@@ -52,14 +52,10 @@ void temperaturescreen::LogOut(){
 
 void temperaturescreen::tempSensor(){
 
-    test += 1;
-    if(test >= 1000){
-        temp += 1;
-            if(temp > 30){
-                temp = 0;
-            }
+    resetTemp += 1;
+    if(resetTemp >= 1000){
         LcdNumber_2_Display(temp);
-        test = 0;
+        resetTemp = 0;
     }
 }
 
