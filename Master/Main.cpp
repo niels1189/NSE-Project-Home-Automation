@@ -47,6 +47,7 @@ void updateSensors();
 void checkCam();
 void sendAlert();
 void init();
+void checkTemperature();
 
 
 int main(int argc, char* argv[]) {	
