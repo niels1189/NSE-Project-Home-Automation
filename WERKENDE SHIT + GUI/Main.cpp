@@ -51,6 +51,8 @@ int routine() {
 
 	while(1){
         updateSensors();
+        checkCam();
+        checkSleep();
     }
 
 }
@@ -101,19 +103,20 @@ void init() {
     lights.shrink_to_fit();
 }
 /*Updates sensors*/
+
 void updateSensors() {
     
-    //int active=0;
+    int active=0;
     unsigned int i;
     bool alert = false;
-    /*
     for(i=0;i<motionSensors.size();i++){
         
         if(motionSensors[i]->check())
             active++;
         
     }
-    if(active==0) {
+    /*
+     if(active==0) {
         alert = true;
     }
     
@@ -121,7 +124,7 @@ void updateSensors() {
         lights[i]->check();
 				
     }
-    */
+    
     //update van elke sensor de value en de active
 
     if (pressureSensor->check()) {
@@ -132,7 +135,8 @@ void updateSensors() {
     }
     
     pressureValue = pressureSensor->getValue();
-
+    
+    */
 }
 
 
