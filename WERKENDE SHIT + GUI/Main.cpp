@@ -121,16 +121,17 @@ void updateSensors() {
         lights[i]->check();
 				
     }
-    
+    /*
     //update van elke sensor de value en de active
 
     if (pressureSensor->check()) {
         asleep = true;
     }
     if(alert & !asleep) {
-        //sendAlert();
+        sendAlert();
     }
     pressureValue = pressureSensor->getValue();
+    */
 }
 
 
