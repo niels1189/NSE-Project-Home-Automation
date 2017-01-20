@@ -92,10 +92,10 @@ void init() {
     Log lo1(LOG);
 
     I2CCom i2c(I2CLOC,0x08);     //the i2c to communicate with sensors
-    MotionSensor m1(0xFC,i2c,cam,l1);
-    MotionSensor m2(0xBC,i2c,cam,l2);
-    MotionSensor m3(0xEC,i2c,cam,l3);
-    PressureSensor s2(0xAC, i2c, cam, log);
+    MotionSensor m1(0xFC,i2c);
+    MotionSensor m2(0xBC,i2c);
+    MotionSensor m3(0xEC,i2c);
+    PressureSensor s2(0xAC, i2c);
     
     motionSensors.push_back(&m1);
     motionSensors.push_back(&m2);

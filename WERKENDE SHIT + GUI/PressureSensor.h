@@ -7,11 +7,10 @@
 
 class PressureSensor : public Sensor{
 public:
-	PressureSensor(int id,I2CCom& x,Camera& cam,Log& log);
-	bool Check();
+	PressureSensor(int sensorID,I2CCom& x);
+	bool check();
 private:
-	int value;		
-	Log& log;
+	int value;
 };
 
 #endif

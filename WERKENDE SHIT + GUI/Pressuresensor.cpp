@@ -3,20 +3,17 @@
 #include "Log.h"
 #include <string>
 
-PressureSensor::PressureSensor(int id,I2CCom& x,Camera& cam,Log& log):Sensor(id,x,cam),value(0),log(log){}
+PressureSensor::PressureSensor(int sensorID,I2CCom& x):Sensor(sensorID,x),value(0){}
 
-bool PressureSensor::Check(){
+bool PressureSensor::check(){
 
-//	log.Write(std::string("checked"));
-	
+	//log.Write(std::string("checked"));
 
-	
-
-	if(GetValue()>150){
-		SetActive();
+	if(getValue()>0){
+		setActive();
 		return true;
 	}
-	else if(Alive()){
+	else if(alive()){
 		return true;
 	}
 	else

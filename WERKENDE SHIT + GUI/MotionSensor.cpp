@@ -1,19 +1,16 @@
 #include "Sensor.h"
 #include "MotionSensor.h"
 
-#include <iostream>
+MotionSensor::MotionSensor(int id,I2CCom& i2c):Sensor(id,i2c){}
 
-using namespace std;
-
-MotionSensor::MotionSensor(int id,I2CCom& i2c,Camera& cam,Light& light):Sensor(id,i2c,cam),light(light){}
-
-bool MotionSensor::Check(){
-	if(GetValue()>0){
-		//cout<<GetValue()<<endl;		
-		SetActive();
-		light.Set_Light(true);
+bool MotionSensor::check(){
+	if(getValue()>60) { // Motion sensor is active
+		setActive(); // Set dead-timer
 		return true;
 	}
-	
-	return Alive();
+	else if(alive()) { // If motionsensor is still active but not expired
+		return true;
+	}
+	else
+		return false;
 }

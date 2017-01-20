@@ -1,22 +1,21 @@
 #include "Sensor.h"
-#include "I2C.h"
+#include "I22cCom.h"
 #include <ctime>
 
 using namespace std;
 
-Sensor::Sensor(int id,I2CCom& x,Camera& cam):ID(id),Timer(time(0)+TimeOut),i2c(x),camera(cam){}
+Sensor::Sensor(int sensorID,I2CCom& x):sensorID(sensorID),timer(time(0)+timeOut),i2c(x){}
 
-int Sensor::GetValue() {
-	return i2c.I2C_GetValue(ID);
-	
+int Sensor::getValue() {
+	return i2c.I2C_GetValue(sensorID);
 }
 
-bool Sensor::Alive() {
-	if (time(0) > Timer)
+bool Sensor::alive() {
+	if (time(0) > timer)
 		return false;
 	return true;
 }
 
-void Sensor::SetActive() {
-	Timer = time(0) + TimeOut;
+void Sensor::setActive() {
+	timer = time(0) + timeOut;
 }
