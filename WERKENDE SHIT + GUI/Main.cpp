@@ -28,7 +28,7 @@ PressureSensor* pressureSensor;
 Camera* cam;                //Pointer to the camera
 Log* log1;
 
-int pressureValue;
+nt pressureValue;
 bool asleep = false;
 bool day = true;
 bool anomaly = false;
@@ -72,7 +72,7 @@ void init() {
     wiringPiSetupGpio();
     
     Light l1(18);
-    Light l2(25);
+    Light l2(22);
     Light l3(23);
     Camera c1;		//The camera
     Log lo1(LOG);
