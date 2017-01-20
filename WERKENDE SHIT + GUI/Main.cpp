@@ -49,7 +49,7 @@ int routine() {
 
 
 	int active=0;
-	int i;
+	unsigned int i;
 
 	while(1){
 
