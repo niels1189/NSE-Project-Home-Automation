@@ -8,6 +8,14 @@
 #include "Light.h"
 #include "MotionSensor.h"
 #include "PressureSensor.h"
+// GUI includes
+#include <QApplication>
+#include "dialog.h"
+#include "screenafterlogin.h"
+#include "temperaturescreen.h"
+#include "temperatuur.h"
+
+
 #define I2CLOC "/dev/i2c-1"// <-- this is the real I2C device you need with the scale model
 ///#define I2CLOC "/dev/simudrv"
 #define LOG "Slaaplog.txt"
@@ -43,10 +51,16 @@ void checkCam();
 
 void init();
 
-int main() {	
-
+int main(int argc, char* argv[]) {	
+	/*
+	QApplication a(argc, argv);
+	Dialog w;
+   	w.show();
+	*/
     
     while(1) {
+	 
+	//a.processEvents();
         for(int i=0;i<sensors.capacity();i++) // For every sensor
             if(sensors[i]->Check()) { // Call their check function
 				active[i]=1; // And if the check is positive (returns true). 
@@ -59,6 +73,7 @@ int main() {
 		for(i=0;i<lights.capacity();i++) // For every light
 			lights[i]->Check(); // Check if timer expired yet
 	}
+	
 }
 
 /*Init for the main*/
