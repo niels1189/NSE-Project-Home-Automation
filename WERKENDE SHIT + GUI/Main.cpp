@@ -21,41 +21,15 @@
 //
 
 
+void init();
+
 using namespace std;
 int routine() {	
-	wiringPiSetupGpio();
 
-	vector<Sensor*> sensors;	
-	vector<Light*> lights;
-
-	Light l1(18);
-	Light l2(25);
-	Light l3(23);
-	Camera cam;		//The camera	
-	I2CCom i2c(I2CLOC,0x08);     //the i2c to communicate with sensors
-	MotionSensor m1(0xFC,i2c,cam,l1);  
-	MotionSensor m2(0xBC,i2c,cam,l2);  
-	MotionSensor m3(0xEC,i2c,cam,l3);  
-	Log log(LOG);
-	PressureSensor s2(0xAC, i2c, cam, log);
-
-	sensors.push_back(&m1);
-	sensors.push_back(&m2);
-	sensors.push_back(&m3);
-	sensors.push_back(&s2);
-
-	sensors.shrink_to_fit();
-
-	lights.push_back(&l1);	
-	lights.push_back(&l2);	
-	lights.push_back(&l3);	
+    init();
 
 
-	lights.shrink_to_fit();
-
-
-
-	for(int i=0;i<lights.capacity();i++){
+	for(int i=0;i<lights.size();i++){
 			lights[i]->Set_Light(false);
 	}
 
@@ -92,5 +66,37 @@ int main(int argc, char *argv[]){
     w.show();
 
     return a.exec();
+}
+
+void init() {
+    wiringPiSetupGpio();
+    
+    vector<Sensor*> sensors;
+    vector<Light*> lights;
+    
+    Light l1(18);
+    Light l2(25);
+    Light l3(23);
+    Camera cam;		//The camera
+    I2CCom i2c(I2CLOC,0x08);     //the i2c to communicate with sensors
+    MotionSensor m1(0xFC,i2c,cam,l1);
+    MotionSensor m2(0xBC,i2c,cam,l2);
+    MotionSensor m3(0xEC,i2c,cam,l3);
+    Log log(LOG);
+    PressureSensor s2(0xAC, i2c, cam, log);
+    
+    sensors.push_back(&m1);
+    sensors.push_back(&m2);
+    sensors.push_back(&m3);
+    sensors.push_back(&s2);
+    
+    sensors.shrink_to_fit();
+    
+    lights.push_back(&l1);
+    lights.push_back(&l2);
+    lights.push_back(&l3);	
+    
+    
+    lights.shrink_to_fit();
 }
 
